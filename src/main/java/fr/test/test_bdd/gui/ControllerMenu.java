@@ -3,6 +3,7 @@ package fr.test.test_bdd.gui;
 
 import fr.test.test_bdd.App;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Button;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -11,7 +12,11 @@ import java.sql.DriverManager;
 
 public class ControllerMenu {
 
-//Connection base de donnée papyprus
+    public Button BtnRechercheLigne;
+    public Button BtnRechercheJeu;
+    public Button BtnInsertion;
+
+    //Connection base de donnée papyprus
     public void  initialize(){
         try {
 
@@ -39,6 +44,6 @@ public class ControllerMenu {
 
     public void OnClickInsertion(ActionEvent actionEvent) throws IOException {
 
-        App.changeFxml("autre");
+        App.changeFxml("AjoutFournisseur");
     }
 }

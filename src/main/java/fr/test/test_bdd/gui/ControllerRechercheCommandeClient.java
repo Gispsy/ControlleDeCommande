@@ -1,19 +1,23 @@
 package fr.test.test_bdd.gui;
 
+import fr.test.test_bdd.App;
 import fr.test.test_bdd.model.Commande;
 import fr.test.test_bdd.model.Fournisseur;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 
+import java.io.IOException;
 import java.sql.*;
 
 public class ControllerRechercheCommandeClient {
     public javafx.scene.text.Text Text;
     public  ComboBox<Fournisseur> BoxFournisseurs;
     public javafx.scene.control.TextArea TextArea;
+    public Button Return;
     private String com;
 
     public void initialize() {
@@ -78,5 +82,9 @@ public class ControllerRechercheCommandeClient {
             alert.showAndWait();
 
         }
+    }
+    public void BtnReturnClick(ActionEvent actionEvent)  throws IOException {   //Function return Menu
+        App.changeFxml("Menu");
+
     }
 }

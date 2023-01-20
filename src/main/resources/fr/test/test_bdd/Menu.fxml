@@ -12,8 +12,8 @@
             <Font size="51.0" />
          </font>
       </Text>
-      <Button fx:id="BtnRechercheLigne" layoutX="60.0" layoutY="253.0" mnemonicParsing="false" onAction="#OnClickR" prefHeight="59.0" prefWidth="141.0" text="RechercheLigne" />
-      <Button fx:id="BtnRechercheJeu" layoutX="230.0" layoutY="253.0" mnemonicParsing="false" onAction="#OnClickJeu" prefHeight="59.0" prefWidth="141.0" text="RechercheJeu" />
-      <Button fx:id="BtnInsertion" layoutX="394.0" layoutY="253.0" mnemonicParsing="false" onAction="#OnClickInsertion" prefHeight="59.0" prefWidth="141.0" text="Insertion" />
+      <Button fx:id="BtnRechercheLigne" layoutX="60.0" layoutY="253.0" mnemonicParsing="false" onAction="#OnClickR" prefHeight="59.0" prefWidth="141.0" text="Fournisseur" />
+      <Button fx:id="BtnRechercheJeu" layoutX="230.0" layoutY="253.0" mnemonicParsing="false" onAction="#OnClickJeu" prefHeight="59.0" prefWidth="141.0" text="Commande" />
+      <Button fx:id="BtnInsertion" layoutX="394.0" layoutY="253.0" mnemonicParsing="false" onAction="#OnClickInsertion" prefHeight="59.0" prefWidth="141.0" text="Ajout Fournisseur" />
    </children>
 </AnchorPane>
