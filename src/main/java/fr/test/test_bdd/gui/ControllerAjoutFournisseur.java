@@ -8,6 +8,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class ControllerAjoutFournisseur {
 
@@ -23,6 +27,13 @@ public class ControllerAjoutFournisseur {
     //Ajout a la base de donnée les valeur entrer avec verification regex
     public void BtnAjoutClick(ActionEvent actionEvent){
     try{
+        //Connection BDD
+        String url = "jdbc:mysql://localhost:3307/papyrus";
+        Connection con = DriverManager.getConnection(url, "root", "tiger");
+
+        //Creation objet pour effectuer des requêtes
+        PreparedStatement stm = con.prepareStatement("INSERT * FROM fournis");
+        ResultSet result = stm.executeQuery();//requete BDD
 
 
     }catch (Exception e){                                           //Si la connection a la base de donnée ne fonctionne pas

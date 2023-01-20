@@ -69,8 +69,8 @@ public class ControllerRechercheCommandeClient {
                 commandesTexte.append(com).append("\n");
 
             }
-            result.close(); //ferme le resultat
-            con.close();//ferme la connection
+            result.close();                                                     //ferme le resultat
+            con.close();                                                        //ferme la connection
             TextArea.setText(commandesTexte.toString());
 
 
