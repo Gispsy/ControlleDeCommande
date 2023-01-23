@@ -34,14 +34,15 @@ public class ControllerAjoutFournisseur {
         String url = "jdbc:mysql://localhost:3307/papyrus";
         Connection con = DriverManager.getConnection(url, "root", "tiger");
 
-        
+        int count = 9180;
+        count++;
 
         //Creation objet pour effectuer des requêtes
 
         PreparedStatement stm = con.prepareStatement("INSERT INTO fournis (numfou, nomfou, ruefou, vilfou, posfou, confou) " +
                                                         "VALUES (?, ?, ?, ?, ?, ?)");
 
-        stm.setInt(1, 666);
+        stm.setInt(1, count);
         stm.setString(2, TextFieldNom.getText());
         stm.setString(3, TextFieldRue.getText());
         stm.setString(4, TextFieldVille.getText());
