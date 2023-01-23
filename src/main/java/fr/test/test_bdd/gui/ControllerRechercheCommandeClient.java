@@ -33,7 +33,7 @@ public class ControllerRechercheCommandeClient {
 
             while (result.next())
             {
-                Fournisseur fou = new Fournisseur(result.getString("fournis.nomfou"),result.getString("fournis.numfou") );
+                Fournisseur fou = new Fournisseur(result.getString("fournis.nomfou"),result.getString("fournis.numfou"));
                 model.add(fou);
 
             }
