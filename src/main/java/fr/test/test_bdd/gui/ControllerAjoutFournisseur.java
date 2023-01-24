@@ -76,29 +76,28 @@ public class ControllerAjoutFournisseur {
         m2 = p2.matcher(TextFieldRue.getText());
         p3 = Pattern.compile("^[A-Z]{1}[a-z]*\\D*\\S[^0123456789] *$");
         m3 = p3.matcher(TextFieldVille.getText());
-        p4 = Pattern.compile("");
+        p4 = Pattern.compile("[0-9]{5}[^abcdefghijklmnopqrstuvwxyz&é'(-è_çà)=ù^$*,;:!?./§£ê^¨<>`@}{°]*$");
         m4 = p4.matcher(TextFieldCP.getText());
         p5 = Pattern.compile("^[A-Z]{1}[a-z]*\\D*\\S[^0123456789] *$");
         m5 = p5.matcher(TextFieldContact.getText());
 
-        if(m.find() && m2.find()){
+        if(m.find() && m2.find() && m3.find() && m4.find() && m5.find()){
 
+            stm.setInt(1, LastID);
+            stm.setString(2, TextFieldNom.getText());
+            stm.setString(3, TextFieldRue.getText());
+            stm.setString(4, TextFieldVille.getText());
+            stm.setString(5, TextFieldCP.getText());
+            stm.setString(6, TextFieldContact.getText());
 
-        stm.setInt(1, LastID);
-        stm.setString(2, TextFieldNom.getText());
-        stm.setString(3, TextFieldRue.getText());
-        stm.setString(4, TextFieldVille.getText());
-        stm.setString(5, TextFieldCP.getText());
-        stm.setString(6, TextFieldContact.getText());
+            stm.execute();
+            stm.close();
+            con.close();
 
-        stm.execute();
-        stm.close();
-        con.close();
-
-        //Confirmation de l'ajout
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirmation");
-        alert.showAndWait();
+            //Confirmation de l'ajout
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation");
+            alert.showAndWait();
         }else{
 
             Alert alert = new Alert(Alert.AlertType.WARNING);
