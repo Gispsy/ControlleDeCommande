@@ -19,6 +19,7 @@ public class ControllerRechercheCommandeClient {
     public javafx.scene.control.TextArea TextArea;
     public Button Return;
     private String com;
+    Fournisseur fou2 = new Fournisseur("tout", "0");
 
     public void initialize() {
         try {
@@ -37,12 +38,16 @@ public class ControllerRechercheCommandeClient {
                 model.add(fou);
 
             }
-            result.close(); //ferme le resultat
-            con.close();//ferme la connection
+            model.add(fou2);
+
+
+
+            result.close();                 //ferme le result
+            con.close();                    //ferme la connection
             BoxFournisseurs.setItems(model);
 
         } catch (Exception e) {
-            e.getMessage();     //Message d'erreur
+            e.getMessage();                 //Message d'erreur
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Mauvaise connection !");
             alert.setContentText(e.getMessage());
@@ -51,27 +56,42 @@ public class ControllerRechercheCommandeClient {
         }
     }
 
-
-    public void ClickSelect(ActionEvent mouseEvent) {
-        String ID = BoxFournisseurs.getSelectionModel().getSelectedItem().getNumfou();
+    public void ClickSelect(ActionEvent actionEvent) {
+        //String ID = BoxFournisseurs.getSelectionModel().getSelectedItem().getNumfou();
+        Fournisseur fournisseur = BoxFournisseurs.getSelectionModel().getSelectedItem();
         StringBuilder commandesTexte = new StringBuilder();
         try {
             String url = "jdbc:mysql://localhost:3307/papyrus";
             Connection con = DriverManager.getConnection(url, "root", "tiger");
-            PreparedStatement stm2 = con.prepareStatement("SELECT numcom,datcom,obscom FROM entcom WHERE numfou=?");
-            stm2.setString(1,ID);
-            ResultSet result = stm2.executeQuery();
-            //ObservableList<Commande> model2 = FXCollections.observableArrayList();
 
-            while (result.next()){
-                Commande com = new Commande(result.getString("numcom"),result.getString("datcom"),result.getString("obscom") );
-               // model2.add(com);
-                commandesTexte.append(com).append("\n");
+            if(fournisseur.getNomfou().equals("tout")){
+                PreparedStatement stm = con.prepareStatement("SELECT numcom,datcom,obscom FROM entcom");
+                ResultSet result1 = stm.executeQuery();
+
+                while(result1.next()){
+                    Commande com1 = new Commande(result1.getString("numcom"), result1.getString("datcom"), result1.getString("obscom") );
+                   commandesTexte.append(com1).append("\n");
+
+                }
+                result1.close();                                                     //ferme le resultat
+                con.close();                                                        //ferme la connection
+                TextArea.setText(commandesTexte.toString());
+
+            }else{
+                PreparedStatement stm2 = con.prepareStatement("SELECT numcom,datcom,obscom FROM entcom WHERE numfou=?");
+                stm2.setString(1, fournisseur.getNumfou());
+                ResultSet result = stm2.executeQuery();
+
+                while (result.next()){
+                    Commande com = new Commande(result.getString("numcom"),result.getString("datcom"),result.getString("obscom") );
+                    commandesTexte.append(com).append("\n");
+
+                }
+                result.close();                                                     //ferme le resultat
+                con.close();                                                        //ferme la connection
+                TextArea.setText(commandesTexte.toString());
 
             }
-            result.close();                                                     //ferme le resultat
-            con.close();                                                        //ferme la connection
-            TextArea.setText(commandesTexte.toString());
 
 
         }catch (Exception e){
